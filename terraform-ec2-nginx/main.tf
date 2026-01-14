@@ -59,10 +59,9 @@ resource "aws_security_group" "nginx_sg" {
 
 resource "aws_instance" "nginx_server" {
   ami                    = data.aws_ami.amazon_linux_2.id
-  instance_type          = "t2.micro"
+  instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.nginx_sg.id]
 
-  # Install and start Nginx on first boot
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
